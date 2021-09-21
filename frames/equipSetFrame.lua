@@ -11,13 +11,13 @@ local function equipItems(set)
     end
 end
 
-NS.CreateSubFrame = function(self, set, i)
-    local f = CreateFrame("Button", "nil" , self)
+NS.setButton = function(set, i)
+    local f = CreateFrame("Button", "set"..i , PaperDollItemsFrame)
     f.set = set
+    f.ID = i
 
-    f:SetPoint("TOPRIGHT", 0, -35*i)
-    --f:SetPoint("CENTER", self, "TOPRIGHT", 0, 0)
-    f:SetSize(30, 30)
+    f:SetPoint("TOPRIGHT", 1, (-100) + 35*-(i-1))
+    f:SetSize(32, 32)
 
     f.tex = f:CreateTexture()
     f.tex:SetAllPoints(f)
@@ -25,7 +25,7 @@ NS.CreateSubFrame = function(self, set, i)
 
     f:SetScript("OnEnter", function(self)
         GameTooltip:SetOwner(self, "ANCHOR_RIGHT", 0, 0)
-        GameTooltip:SetText( listToStr(f.set) )
+        GameTooltip:SetText(listToStr(f.set))
         GameTooltip:Show()
     end)
 
@@ -34,19 +34,22 @@ NS.CreateSubFrame = function(self, set, i)
     end)
 
     f:SetScript("OnMouseDown", function(self, button)
-        print(button)
-
         if button == 'LeftButton' then
             equipItems(f.set)
-        elseif button == 'RightButton' then
-            print('open dropdown menu')
+            NS.reorganiseSetButtons()
+        elseif button == 'RightButton' and
+        IsAltKeyDown() and
+        IsShiftKeyDown() and
+        IsControlKeyDown() then
+            f:Hide()
+            tremove(buttons, f.ID)
+            tremove(sets, f.ID)
+            for ii,set in ipairs(sets) do
+                buttons[ii].ID = ii
+                buttons[ii]:SetPoint("TOPRIGHT", 0, 1, 35*-(ii-1))
+            end
         end
-
     end)
 
-    return f
+    tinsert(buttons, f)
 end
-
-
-
---"$parent_NODE"..#self.buttons+1
