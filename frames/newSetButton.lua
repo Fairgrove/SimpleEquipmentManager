@@ -7,7 +7,7 @@ newSetButton:SetPoint("CENTER", PaperDollItemsFrame, "TOP", 0, 0)
 
 newSetButton:SetScript("OnEnter", function(self)
     GameTooltip:SetOwner(self, "ANCHOR_RIGHT", 0, 0)
-    GameTooltip:SetText("Click here to save currently equipped gear as a set.\nctrl+alt+shift right-click on a set to delete it \nctrl+shit left-click a set to update it to what is currently equipped")
+    GameTooltip:SetText("Click here to save currently equipped gear as a set.\nctrl+alt+shift right-click on a set to delete it \nctrl+shit left-click a set to update it to what is currently equipped (NYI)")
     GameTooltip:Show()
 end)
 
