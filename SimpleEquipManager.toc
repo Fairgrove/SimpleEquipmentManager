@@ -1,0 +1,10 @@
+## Interface: 90005
+## Title: Simple Equipment Manager
+## Author: Terranite / Fagerlund
+## Version: 1
+## SavedVariablesPerCharacter: CHARSETS
+## Notes: Lightweight Equipment set addon
+
+frames/equipSetFrame.lua
+frames/newSetButton.lua
+core.lua
