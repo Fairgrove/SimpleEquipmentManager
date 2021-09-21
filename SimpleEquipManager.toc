@@ -5,6 +5,10 @@
 ## SavedVariablesPerCharacter: CHARSETS
 ## Notes: Lightweight Equipment set addon
 
+scripts/sets.lua
+scripts/items.lua
+
 frames/equipSetFrame.lua
 frames/newSetButton.lua
+
 core.lua

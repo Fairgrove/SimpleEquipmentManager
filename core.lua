@@ -3,16 +3,6 @@ local SimpleEquipManager, NS = ...
 sets = {}
 buttons = {}
 
-function deleteSet(setID)
-    local tempSets = {}
-
-    for i,v in ipairs(SETS) do
-        if not i == setID then
-            table.insert(tempSets, v)
-        end
-    end
-end
-
 function getEquipped()
     local eq = {} --equipped items
 
@@ -53,18 +43,15 @@ SavedVariables:SetScript("OnEvent", function(self, event, arg1)
             sets = CHARSETS
         end
 
+        --create set buttons
         for i, v in pairs(sets) do
-            tinsert(buttons, NS.CreateSubFrame(PaperDollItemsFrame, v, i))
+            NS.setButton(v, i)
         end
 
         print("|c00000000" .. arg1 .. " Loaded|r")
     end
 
     if event == "PLAYER_LOGOUT" then
-        CHARSETS = {}
-
-        for i, v in pairs(sets) do
-            CHARSETS[i] = sets[i]
-        end
+        CHARSETS = sets
     end
 end)
